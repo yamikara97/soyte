@@ -16,29 +16,37 @@ namespace HD_proj.Models
         }
 
         [Display(Name = "Số")]
+        [Required]
         public string So { get; set; }
 
         [Display(Name = "Ngày Cấp")]
+        [Required]
         [DataType(DataType.Date)]
         public DateTime Ngaycap { get; set; }
 
         [Display(Name = "Loại")]
+        [Required]
         public string Loai { get; set; }
 
         [Display(Name = "Trình độ")]
-        public int Trinhdo { get; set; }
+        [Required]
+        public string Trinhdo { get; set; }
 
         [Display(Name = "Phạm vi Hợp đồng")]
+        [Required]
         public string Phamvi { get; set; }
 
         [Display(Name = "Hình thức cấp")]
+        [Required]
         public string Hinhthuccap { get; set; }
 
         [Display(Name = "Ngày hiệu lực")]
+        [Required]
         [DataType(DataType.Date)]
         public string Ngayhieuluc { get; set; }
 
         [Display (Name = "Trạng thái")]
+        [Required]
         public Trangthaivb Trangthai { get;set; }
 
         public string Cmnd { get; set; }
@@ -46,6 +54,7 @@ namespace HD_proj.Models
         public Guid Quyetdinh { get; set; }
 
         [Display(Name = "Người ký duyệt")]
+        [Required]
         public string Nguoikyduyet { get; set; }
 
     }

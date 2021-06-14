@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HD_proj.Migrations
 {
-    public partial class dataini : Migration
+    public partial class datasetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,17 +57,17 @@ namespace HD_proj.Migrations
                     DateUpdate = table.Column<DateTime>(nullable: false),
                     UpdateBy = table.Column<string>(nullable: true),
                     Ghichu = table.Column<string>(nullable: true),
-                    So = table.Column<string>(nullable: true),
+                    So = table.Column<string>(nullable: false),
                     Ngaycap = table.Column<DateTime>(nullable: false),
-                    Loai = table.Column<string>(nullable: true),
-                    Trinhdo = table.Column<int>(nullable: false),
-                    Phamvi = table.Column<string>(nullable: true),
-                    Hinhthuccap = table.Column<string>(nullable: true),
-                    Ngayhieuluc = table.Column<string>(nullable: true),
+                    Loai = table.Column<string>(nullable: false),
+                    Trinhdo = table.Column<string>(nullable: false),
+                    Phamvi = table.Column<string>(nullable: false),
+                    Hinhthuccap = table.Column<string>(nullable: false),
+                    Ngayhieuluc = table.Column<string>(nullable: false),
                     Trangthai = table.Column<int>(nullable: false),
                     Cmnd = table.Column<string>(nullable: true),
                     Quyetdinh = table.Column<Guid>(nullable: false),
-                    Nguoikyduyet = table.Column<string>(nullable: true)
+                    Nguoikyduyet = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,13 +126,13 @@ namespace HD_proj.Migrations
                 columns: table => new
                 {
                     IdCmnd = table.Column<string>(nullable: false),
-                    Hoten = table.Column<string>(nullable: true),
+                    Hoten = table.Column<string>(nullable: false),
                     Ngaysinh = table.Column<DateTime>(nullable: false),
                     Ngaycap = table.Column<DateTime>(nullable: false),
-                    Noicap = table.Column<string>(nullable: true),
-                    Sodienthoai = table.Column<string>(nullable: true),
+                    Noicap = table.Column<string>(nullable: false),
+                    Sodienthoai = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: true),
-                    Diachi = table.Column<string>(nullable: true),
+                    Diachi = table.Column<string>(nullable: false),
                     DateUpdate = table.Column<DateTime>(nullable: false),
                     UpdateBy = table.Column<string>(nullable: true)
                 },

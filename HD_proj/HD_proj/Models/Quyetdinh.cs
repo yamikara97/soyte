@@ -14,5 +14,8 @@ namespace HD_proj.Models
         [Display(Name = "Người ký duyệt")]
         public string Nguoiky { get; set; }
     
+        [Display(Name = "Ngày ký")]
+        [DataType(DataType.Date)]
+        public DateTime Ngayky { get; set; }
     }
 }

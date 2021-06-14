@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HD_proj.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210614043952_dataini")]
-    partial class dataini
+    [Migration("20210614140609_datasetup")]
+    partial class datasetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
+                .HasAnnotation("ProductVersion", "3.1.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -112,34 +112,41 @@ namespace HD_proj.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Hinhthuccap")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Loai")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Ngaycap")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Ngayhieuluc")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nguoikyduyet")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phamvi")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("Quyetdinh")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("So")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Trangthai")
                         .HasColumnType("int");
 
-                    b.Property<int>("Trinhdo")
-                        .HasColumnType("int");
+                    b.Property<string>("Trinhdo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdateBy")
                         .HasColumnType("nvarchar(max)");
@@ -255,12 +262,14 @@ namespace HD_proj.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Diachi")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Hoten")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Ngaycap")
@@ -270,9 +279,11 @@ namespace HD_proj.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Noicap")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sodienthoai")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdateBy")

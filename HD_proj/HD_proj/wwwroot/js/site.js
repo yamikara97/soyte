@@ -35,8 +35,7 @@ $(document).ready(function () {
                 "previous": "Trước"
             },
         },
-        "pageLength": 15,
-        "bLengthChange": false,
+        "pageLength": 20,
     });
     $(".dataTables_filter input").unbind();
     $(".dataTables_filter input").bind('keyup', function (e) {

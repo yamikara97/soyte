@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<HD_proj.Models.ModelViewmodel>
+
+<table id="cchn" class="table nowrap table-bordered table-striped mt-5 table-data">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Id</th>
+            <th>Ngày cấp</th>
+            <th>Ngày hiệu lực</th>
+            <th>Quyết định</th>
+            <th>Người đại diện</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item != null)
+            {
+                <tr>
+                    <td></td>
+                    <td>@item.Cchn.Id</td>
+                    <td>@item.Cchn.Ngaycap</td>
+                    <td>@item.Cchn.Ngayhieuluc</td>
+                    <td>@(item.Quyetdinh == null ? "" : item.Quyetdinh.Sohieu)</td>
+                    <td>@(item.Giaytotuythan == null? "" :  item.Giaytotuythan.Hoten)</td>
+                    <td class="text-center">
+                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Create") + "/" + item.Cchn.Id)">
+                            <span><i class="fas fa-pen"></i></span>
+                        </button>
+                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Mail") + "/" + item.Cchn.Id)">
+                            <span><i class="fas fa-arrow-alt-circle-up"></i></span>
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+

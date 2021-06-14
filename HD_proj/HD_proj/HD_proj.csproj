@@ -6,6 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210614043952_dataini.cs" />
+    <Compile Remove="Migrations\20210614043952_dataini.Designer.cs" />
+    <Compile Remove="Migrations\20210614135120_datasetup.cs" />
+    <Compile Remove="Migrations\20210614135120_datasetup.Designer.cs" />
+    <Compile Remove="Migrations\20210614135226_datasetup.cs" />
+    <Compile Remove="Migrations\20210614135226_datasetup.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
     <None Include="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
     <None Include="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />

@@ -11,24 +11,30 @@ namespace HD_proj.Models
         [Key]
         [Display(Name = "Số Cmnd/Cccd")]
         [MinLength(9)]
+        [Required]
         public string IdCmnd { get; set; }
 
         [Display(Name = "Họ tên")]
+        [Required]
         public string Hoten { get; set; }
 
         [Display(Name = "Ngày sinh")]
+        [Required]
         [DataType(DataType.Date)]
         public DateTime Ngaysinh { get; set; }
 
         [Display(Name = "Ngày cấp")]
+        [Required]
         [DataType(DataType.Date)]
         public DateTime Ngaycap { get; set; }
 
         [Display(Name = "Nơi cấp")]
+        [Required]
         public string Noicap { get; set; }
 
         [Display(Name = "Số điện thoại")]
         [DataType(DataType.PhoneNumber)]
+        [Required]
         public string Sodienthoai {get;set;}
 
         [Display(Name = "Email")]
@@ -36,6 +42,7 @@ namespace HD_proj.Models
         public string Email { get; set; }
 
         [Display (Name = "Địa chỉ thường trú")]
+        [Required]
         public string Diachi { get; set; }
 
 

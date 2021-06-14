@@ -8,6 +8,7 @@
 <script type="text/javascript">
     $(function () {
 
+     
         var placeholderElement = $('#modal-placeholder');
 
         $(document).on('click', 'button[data-toggle="ajax-modal"]', function (event) {
@@ -22,7 +23,24 @@
             event.preventDefault();
 
             var form = $(this).parents('.modal').find('form');
-            var actionUrl = form.attr('action');
+            var fail = false;
+            var fail_log = '';
+            var name;
+            $(form).find('select, textarea, input').each(function () {
+                if (!$(this).prop('required')) {
+
+                } else {
+                    if (!$(this).val()) {
+                        fail = true;
+                        $(this).css("border","2px solid red");
+                    }
+
+                }
+            });
+
+            //submit if fail never got set to true
+            if (!fail) {
+                var actionUrl = form.attr('action');
             var dataToSend = new FormData(form.get(0));
 
             if ($(this).data('action') != undefined) {
@@ -98,8 +116,7 @@
                                     "previous": "Trước"
                                 },
                             },
-                            "pageLength": 15,
-                            "bLengthChange": false
+                            "pageLength": 20,
                         });
                         $(".dataTables_filter input").unbind();
                         $(".dataTables_filter input").bind('keyup', function (e) {
@@ -112,6 +129,10 @@
                     placeholderElement.find('.modal').modal('hide');
                 }//
             });
+            } else {
+                alert("Yêu cầu nhập đủ các trường bắt buộc");
+            }
+
         });
     });
 

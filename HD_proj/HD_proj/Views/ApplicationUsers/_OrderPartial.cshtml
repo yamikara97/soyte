@@ -42,19 +42,7 @@
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
                     }
-                    <div class="form-group">
-                        <label class="control-label" localize-content>Ảnh đại diện</label>
-                        <div class="row">
-                            @if (Model.Assignment != null)
-                            {
-                            var base64Value = Convert.ToBase64String(Model.Assignment);
-                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64Value);
-                            <div class="col-3">  <img style="height:70px;width: 70px" src="@imgSrc" /></div>
-                            }
-                            <div class="col-9">  <input type="file" name="image" class="form-control-file" /></div>
-                        </div>
-                        <span class="text-danger"></span>
-                    </div>
+                  
                 </form>
             </div>
             <div class="modal-footer">
