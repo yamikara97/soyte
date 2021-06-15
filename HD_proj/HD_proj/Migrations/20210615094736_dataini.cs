@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HD_proj.Migrations
 {
-    public partial class datasetup : Migration
+    public partial class dataini : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,11 +59,11 @@ namespace HD_proj.Migrations
                     Ghichu = table.Column<string>(nullable: true),
                     So = table.Column<string>(nullable: false),
                     Ngaycap = table.Column<DateTime>(nullable: false),
-                    Loai = table.Column<string>(nullable: false),
+                    Loai = table.Column<string>(nullable: true),
                     Trinhdo = table.Column<string>(nullable: false),
                     Phamvi = table.Column<string>(nullable: false),
                     Hinhthuccap = table.Column<string>(nullable: false),
-                    Ngayhieuluc = table.Column<string>(nullable: false),
+                    Ngayhieuluc = table.Column<DateTime>(nullable: false),
                     Trangthai = table.Column<int>(nullable: false),
                     Cmnd = table.Column<string>(nullable: true),
                     Quyetdinh = table.Column<Guid>(nullable: false),
@@ -130,7 +130,7 @@ namespace HD_proj.Migrations
                     Ngaysinh = table.Column<DateTime>(nullable: false),
                     Ngaycap = table.Column<DateTime>(nullable: false),
                     Noicap = table.Column<string>(nullable: false),
-                    Sodienthoai = table.Column<string>(nullable: false),
+                    Sodienthoai = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Diachi = table.Column<string>(nullable: false),
                     DateUpdate = table.Column<DateTime>(nullable: false),
@@ -150,7 +150,8 @@ namespace HD_proj.Migrations
                     UpdateBy = table.Column<string>(nullable: true),
                     Ghichu = table.Column<string>(nullable: true),
                     Sohieu = table.Column<string>(nullable: true),
-                    Nguoiky = table.Column<string>(nullable: true)
+                    Nguoiky = table.Column<string>(nullable: true),
+                    Ngayky = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

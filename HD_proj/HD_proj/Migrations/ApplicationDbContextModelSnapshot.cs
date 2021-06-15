@@ -114,15 +114,13 @@ namespace HD_proj.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Loai")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Ngaycap")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Ngayhieuluc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Ngayhieuluc")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nguoikyduyet")
                         .IsRequired()
@@ -281,7 +279,6 @@ namespace HD_proj.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sodienthoai")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdateBy")

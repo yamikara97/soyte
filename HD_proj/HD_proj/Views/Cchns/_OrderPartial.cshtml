@@ -15,57 +15,41 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-4 col-12">
                                 <div class="form-group">
                                     1) <label asp-for="So" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
                                     <input required asp-for="So" class="form-control" />
                                     <span asp-validation-for="So" class="text-danger"></span>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    2) <label asp-for="Hinhthuccap" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                    <input required asp-for="Hinhthuccap" class="form-control" />
+                                    <span asp-validation-for="Hinhthuccap" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    2) <label asp-for="Ngaycap" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                    3) <label asp-for="Ngaycap" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
                                     <input required asp-for="Ngaycap" class="form-control" />
                                     <span asp-validation-for="Ngaycap" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    3) <label asp-for="Ngayhieuluc" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                    4) <label asp-for="Ngayhieuluc" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
                                     <input required asp-for="Ngayhieuluc" class="form-control" />
                                     <span asp-validation-for="Ngayhieuluc" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    4) <label asp-for="Phamvi" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                    5) <label asp-for="Phamvi" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
                                     <input required asp-for="Phamvi" class="form-control" />
                                     <span asp-validation-for="Phamvi" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    5) <label asp-for="Loai" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required asp-for="Loai" class="form-control" />
-                                    <span asp-validation-for="Loai" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    6) <label asp-for="Trinhdo" class="control-label"></label> <span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required asp-for="Trinhdo" class="form-control" />
-                                    <span asp-validation-for="Trinhdo" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    7) <label asp-for="Hinhthuccap" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required asp-for="Hinhthuccap" class="form-control" />
-                                    <span asp-validation-for="Hinhthuccap" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -81,22 +65,46 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                8) <label class="control-label">Họ tên</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                6) <label class="control-label">Họ tên</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
                                 <input required type="text" class="form-control" name="Hoten" value="@(giayToTuyThan == null ? "" : giayToTuyThan.Hoten)" />
                                 <span class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                9) <label class="control-label">Ngày sinh</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                <input required type="date" class="form-control" name="ngaysinh" value="@(giayToTuyThan == null ? DateTime.MinValue : giayToTuyThan.Ngaysinh)" />
+                                7) <label class="control-label">Ngày sinh</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                <input required type="date" class="form-control" name="ngaysinh" value="@(giayToTuyThan == null ? DateTime.MinValue.ToString("yyyy-MM-dd")  : giayToTuyThan.Ngaysinh.ToString("yyyy-MM-dd") )" />
                                 <span class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                10) <label class="control-label">Số giấy tờ (CMND/CCCD)</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                8) <label asp-for="Trinhdo" class="control-label"></label> <span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                <input required asp-for="Trinhdo" class="form-control" />
+                                <span asp-validation-for="Trinhdo" class="text-danger"></span>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                9) <label class="control-label">Số giấy tờ (CMND/CCCD)</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
                                 <input required type="text" class="form-control" name="sogiayto" value="@(giayToTuyThan == null ? "" : giayToTuyThan.IdCmnd)" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                10) <label class="control-label">Ngày cấp</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                <input required type="date" class="form-control" name="ngaycapgiayto" value="@(giayToTuyThan == null ? DateTime.MinValue.ToString("yyyy-MM-dd")  : giayToTuyThan.Ngaycap.ToString("yyyy-MM-dd") )" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                11) <label class="control-label">Nơi cấp</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                <input required type="text" class="form-control" name="noicap" value="@(giayToTuyThan == null ? "" : giayToTuyThan.Noicap)" />
                                 <span class="text-danger"></span>
                             </div>
                         </div>
@@ -104,15 +112,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                11) <label class="control-label">Ngày cấp</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                <input required type="date" class="form-control" name="ngaycapgiayto" value="@(giayToTuyThan == null ? DateTime.MinValue : giayToTuyThan.Ngaycap)" />
-                                <span class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                12) <label class="control-label">Số điện thoại</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                <input required type="text" class="form-control" name="sodienthoai" value="@(giayToTuyThan == null ? "": giayToTuyThan.Sodienthoai)" />
+                                12) <label class="control-label">Số điện thoại</label>
+                                <input  type="text" class="form-control" name="sodienthoai" value="@(giayToTuyThan == null ? "": giayToTuyThan.Sodienthoai)" />
                                 <span class="text-danger"></span>
                             </div>
                         </div>
@@ -123,23 +124,14 @@
                                 <span class="text-danger"></span>
                             </div>
                         </div>
-                     </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    14) <label class="control-label">Nơi cấp</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required type="text" class="form-control" name="noicap" value="@(giayToTuyThan == null ? "" : giayToTuyThan.Noicap)" />
-                                    <span class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    15) <label class="control-label">Địa chỉ</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required type="text" class="form-control" name="diachi" value="@(giayToTuyThan == null ? "" : giayToTuyThan.Diachi)" />
-                                    <span class="text-danger"></span>
-                                </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                14) <label class="control-label">Địa chỉ</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                <input required type="text" class="form-control" name="diachi" value="@(giayToTuyThan == null ? "" : giayToTuyThan.Diachi)" />
+                                <span class="text-danger"></span>
                             </div>
                         </div>
+                    </div>
                         <hr />
                         <div class="row">
                             <div class="col-12">
@@ -149,44 +141,35 @@
                         @{
                             var quyetDinh = ViewData["Quyetdinh"] as Quyetdinh;
                         }
-                      <input type="hidden" name="quyetdinhID" value="@(quyetDinh == null ? "" : quyetDinh.Id.ToString())" />
+                      <input type="hidden" name="quyetdinhID" value="@(quyetDinh == null ? Guid.Empty.ToString(): quyetDinh.Id.ToString())" />
                       <div class="row">
                           <div class="col-md-4">
                               <div class="form-group">
-                                  16) <label class="control-label">Số hiệu</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                  15) <label class="control-label">Số hiệu</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
                                   <input required type="text" class="form-control" name="sohieuquyetdinh" value="@(quyetDinh == null ? "": quyetDinh.Sohieu)" />
                                   <span class="text-danger"></span>
                               </div>
                           </div>
                           <div class="col-md-4">
                               <div class="form-group">
-                                  17) <label class="control-label">Ngày ký</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                  <input required type="date" class="form-control" name="ngayquyetdinh" value="@(quyetDinh == null ? DateTime.MinValue: quyetDinh.Ngayky)" />
+                                  16) <label class="control-label">Ngày ký</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                  <input required type="date" class="form-control" name="ngayquyetdinh" value="@(quyetDinh == null ? DateTime.MinValue.ToString("yyyy-MM-dd") : quyetDinh.Ngayky.ToString("yyyy-MM-dd"))" />
                                   <span class="text-danger"></span>
                               </div>
                           </div>
-                          <div class="col-md-4">
-                              <div class="form-group">
-                                  18) <label class="control-label">Người ký quyết định</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                  <input required type="text" class="form-control" name="nguoikyquyetdinh" value="@(quyetDinh == null ? "": quyetDinh.Nguoiky)" />
-                                  <span class="text-danger"></span>
-                              </div>
+                         <div class="col-md-4">
+                          <div class="form-group">
+                              17) <label asp-for="Nguoikyduyet" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                              <input required asp-for="Nguoikyduyet" class="form-control" value="@(Model.Nguoikyduyet == null ? "Nguyễn Tiến Sơn" : Model.Nguoikyduyet) " />
+                              <span asp-validation-for="Nguoikyduyet" class="text-danger"></span>
                           </div>
                       </div>
+                       </div>
                         <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    19) <label asp-for="Nguoikyduyet" class="control-label"></label>
-                                    <input required asp-for="Nguoikyduyet" class="form-control" value="@(Model.Nguoikyduyet == null ? "Nguyễn Tiến Sơn" : Model.Nguoikyduyet) "/>
-                                    <span asp-validation-for="Nguoikyduyet" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    20) <label asp-for="Ghichu" class="control-label"></label>
+                                    18) <label asp-for="Ghichu" class="control-label"></label>
                                     <input asp-for="Ghichu" class="form-control" />
                                     <span asp-validation-for="Ghichu" class="text-danger"></span>
                                 </div>
@@ -220,6 +203,6 @@
         $('input').on('change', function () {
                 $(this).css("border", "1px solid #d1d3e2");
         });
-
     });
+
 </script>

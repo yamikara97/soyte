@@ -12,7 +12,9 @@ namespace HD_proj.Models
         public enum Trangthaivb
         {
             ACTIVE = 0,
-            DEACTIVE = 1
+            DEACTIVE = 1,
+            REPLACE = 2,
+            CANCEL = 3
         }
 
         [Display(Name = "Số")]
@@ -25,7 +27,6 @@ namespace HD_proj.Models
         public DateTime Ngaycap { get; set; }
 
         [Display(Name = "Loại")]
-        [Required]
         public string Loai { get; set; }
 
         [Display(Name = "Trình độ")]
@@ -43,7 +44,7 @@ namespace HD_proj.Models
         [Display(Name = "Ngày hiệu lực")]
         [Required]
         [DataType(DataType.Date)]
-        public string Ngayhieuluc { get; set; }
+        public DateTime Ngayhieuluc { get; set; }
 
         [Display (Name = "Trạng thái")]
         [Required]

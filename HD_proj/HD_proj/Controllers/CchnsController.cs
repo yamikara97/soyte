@@ -114,24 +114,26 @@ namespace HD_proj.Controllers
             giayto.Diachi = collect["diachi"];
 
 
-            //var quyetdinh = _context.Quyetdinhs.Where(a => a.Id == Guid.Parse(collect["sohieuquyetdinh"])).FirstOrDefault();
-            //if (quyetdinh != null && quyetdinh.Id != Guid.Parse(collect["sohieuquyetdinh"]))
-            //{
-            //    _context.Remove(quyetdinh);
-            //    _context.SaveChanges();
-            //}
+            var quyetdinh = new Quyetdinh();
+            if (collect["quyetdinhID"].ToString() != Guid.Empty.ToString())
+            {
+                quyetdinh = _context.Quyetdinhs.Where(a => a.Id == Guid.Parse(collect["quyetdinhID"].ToString())).FirstOrDefault();
+                if (quyetdinh != null && quyetdinh.Id != Guid.Parse(collect["quyetdinhID"].ToString()))
+                {
+                    _context.Remove(quyetdinh);
+                    _context.SaveChanges();
+                }
+            }
+            quyetdinh.Id = Guid.NewGuid();
+            quyetdinh.Sohieu = collect["sohieuquyetdinh"];
+            quyetdinh.Nguoiky = cchn.Nguoikyduyet;
+            quyetdinh.Ngayky = DateTime.Parse(collect["ngayquyetdinh"]);
 
-            //quyetdinh = new Quyetdinh();
-            //quyetdinh.Id = Guid.NewGuid();
-            //quyetdinh.Sohieu = collect["sohieuquyetdinh"];
-            //quyetdinh.Nguoiky = collect["nguoikyquyetdinh"];
-            //quyetdinh.Ngayky = DateTime.Parse(collect["ngayquyetdinh"]);
-
-            //cchn.Quyetdinh = quyetdinh.Id;
+            cchn.Quyetdinh = quyetdinh.Id;
             cchn.Cmnd = collect["sogiayto"];
             cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
 
-            //await _context.Quyetdinhs.AddAsync(quyetdinh);
+            await _context.Quyetdinhs.AddAsync(quyetdinh);
             await _context.Giaytotuythans.AddAsync(giayto);
 
 
@@ -168,44 +170,94 @@ namespace HD_proj.Controllers
             return PartialView("_OrderPartial", cchn);
         }
 
-        // GET: Cchns/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        [Authorize]
+        public async Task<IActionResult> Replace(Guid? id)
         {
-            if (id == null)
+            var cchn = new Cchn();
+            ViewData["Giayto"] = _context.Giaytotuythans.ToList();
+            if (id.HasValue)
             {
-                return NotFound();
+
+                ViewData["File"] = _context.DanhmucFiles.Where(a => a.FatherId == id).ToList();
+                cchn = await _context.Cchns.FindAsync(id);
+                ViewData["Giaytotuythan"] = _context.Giaytotuythans.Where(a => a.IdCmnd == cchn.Cmnd).FirstOrDefault();
+                ViewData["Quyetdinh"] = _context.Quyetdinhs.Where(a => a.Id == cchn.Quyetdinh).FirstOrDefault();
             }
 
-            var cchn = await _context.Cchns.FindAsync(id);
-            if (cchn == null)
-            {
-                return NotFound();
-            }
-            return View(cchn);
+            return PartialView("_ReplacePartial", cchn);
         }
 
-        // POST: Cchns/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("So,Ngaycap,Loai,Trinhdo,Phamvi,Hinhthuccap,Ngayhieuluc,Trangthai,Cmnd,Quyetdinh,Nguoikyduyet,Id,DateUpdate,UpdateBy,Ghichu")] Cchn cchn)
+        public async Task<IActionResult> Replace(Guid? id, [Bind("So,Ngaycap,Loai,Trinhdo,Phamvi,Hinhthuccap,Ngayhieuluc,Nguoikyduyet,Id,Ghichu")] Cchn cchn, IFormCollection collect)
         {
-            if (id != cchn.Id)
+            cchn.UpdateBy = User.Identity.Name;
+
+            var giayto = _context.Giaytotuythans.Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
+            if (giayto != null && giayto.IdCmnd != collect["sogiayto"])
             {
-                return NotFound();
+                giayto.Hoten = collect["Hoten"];
+                giayto.Noicap = collect["noicap"];
+                giayto.Ngaysinh = DateTime.Parse(collect["ngaysinh"]);
+                giayto.Ngaycap = DateTime.Parse(collect["ngaycapgiayto"]);
+                giayto.Sodienthoai = collect["sodienthoai"];
+                giayto.Email = collect["email"];
+                giayto.Diachi = collect["diachi"];
+                _context.Giaytotuythans.Update(giayto);
+                _context.SaveChanges();
             }
+            else
+            {
+                giayto = new Giaytotuythan();
+                giayto.IdCmnd = collect["sogiayto"];
+                giayto.Hoten = collect["Hoten"];
+                giayto.Noicap = collect["noicap"];
+                giayto.Ngaysinh = DateTime.Parse(collect["ngaysinh"]);
+                giayto.Ngaycap = DateTime.Parse(collect["ngaycapgiayto"]);
+                giayto.Sodienthoai = collect["sodienthoai"];
+                giayto.Email = collect["email"];
+                giayto.Diachi = collect["diachi"];
+                _context.Giaytotuythans.Update(giayto);
+                _context.SaveChanges();
+            }
+
+            var quyetdinh = new Quyetdinh();
+            if (collect["quyetdinhID"].ToString() != Guid.Empty.ToString())
+            {
+                quyetdinh = _context.Quyetdinhs.Where(a => a.Id == Guid.Parse(collect["quyetdinhID"].ToString())).FirstOrDefault();
+                if (quyetdinh != null && quyetdinh.Id != Guid.Parse(collect["quyetdinhID"].ToString()))
+                {
+                    _context.Remove(quyetdinh);
+                    _context.SaveChanges();
+                }
+            }
+            quyetdinh.Id = Guid.NewGuid();
+            quyetdinh.Sohieu = collect["sohieuquyetdinh"];
+            quyetdinh.Nguoiky = cchn.Nguoikyduyet;
+            quyetdinh.Ngayky = DateTime.Parse(collect["ngayquyetdinh"]);
+
+            cchn.Quyetdinh = quyetdinh.Id;
+            cchn.Cmnd = collect["sogiayto"];
+            cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
+            cchn.Id = Guid.NewGuid();
+
+            await _context.Quyetdinhs.AddAsync(quyetdinh);
+            await _context.Giaytotuythans.AddAsync(giayto);
+
+
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(cchn);
-                    await _context.SaveChangesAsync();
+                        await _context.AddAsync(cchn);
+                        await _context.SaveChangesAsync();
+                        TempData["Notifications"] = " Successfully";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CchnExists(cchn.Id))
+                    if (id.HasValue && !CchnExists(cchn.Id))
                     {
                         return NotFound();
                     }
@@ -214,12 +266,10 @@ namespace HD_proj.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(cchn);
+            return PartialView("_OrderPartial", cchn);
         }
 
-        // GET: Cchns/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)

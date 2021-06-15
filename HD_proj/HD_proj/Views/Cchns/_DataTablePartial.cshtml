@@ -10,6 +10,7 @@
             <th>Ngày hiệu lực</th>
             <th>Quyết định</th>
             <th>Người đại diện</th>
+            <th>Trạng thái</th>
             <th></th>
         </tr>
     </thead>
@@ -20,19 +21,42 @@
             {
                 <tr>
                     <td></td>
-                    <td>@item.Cchn.Id</td>
-                    <td>@item.Cchn.Ngaycap</td>
-                    <td>@item.Cchn.Ngayhieuluc</td>
+                    <td>@item.Cchn.So</td>
+                    <td>@item.Cchn.Ngaycap.ToString("dd-MM-yyyy")</td>
+                    <td>@item.Cchn.Ngayhieuluc.ToString("dd-MM-yyyy")</td>
                     <td>@(item.Quyetdinh == null ? "" : item.Quyetdinh.Sohieu)</td>
                     <td>@(item.Giaytotuythan == null? "" :  item.Giaytotuythan.Hoten)</td>
+                    <td class="text-center">
+                        @if (item.Cchn.Trangthai == Cchn.Trangthaivb.ACTIVE)
+                        {
+                            <span class="btn  bg-primary text-center text-white">Mới</span>
+                        }
+                        @if (item.Cchn.Trangthai == Cchn.Trangthaivb.DEACTIVE)
+                        {
+                            <span class="btn  bg-danger text-center text-white">Đã hết hạn</span>
+                        }
+                        @if (item.Cchn.Trangthai == Cchn.Trangthaivb.REPLACE)
+                        {
+                            <span class="btn  bg-warning text-center text-white">Đã thay thế</span>
+                        }
+                        @if (item.Cchn.Trangthai == Cchn.Trangthaivb.CANCEL)
+                        {
+                            <span class="btn  bg-warning text-center text-white">Đã hủy</span>
+                        }
+                    </td>
                     <td class="text-center">
                         <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Create") + "/" + item.Cchn.Id)">
                             <span><i class="fas fa-pen"></i></span>
                         </button>
-                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Mail") + "/" + item.Cchn.Id)">
-                            <span><i class="fas fa-arrow-alt-circle-up"></i></span>
+                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Replace") + "/" + item.Cchn.Id)">
+                            <span><i class="fas fa-sync"></i></span>
                         </button>
-
+                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Mail") + "/" + item.Cchn.Id)">
+                            <span><i class="fas fa-ban"></i></span>
+                        </button>
+                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Mail") + "/" + item.Cchn.Id)">
+                            <span><i class="fas fa-print"></i></span>
+                        </button>
                     </td>
                 </tr>
             }

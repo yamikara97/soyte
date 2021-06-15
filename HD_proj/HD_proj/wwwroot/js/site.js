@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $('.table-data').DataTable().destroy();
 
-    $('.table-data').DataTable({
+    var t = $('.table-data').DataTable({
         "dom": '<"top"flp>',
         fixedHeader: {
             header: true
@@ -35,12 +35,19 @@ $(document).ready(function () {
                 "previous": "Trước"
             },
         },
+        "order": [[1, 'asc']],
         "pageLength": 20,
     });
+    t.on('order.dt search.dt', function () {
+        t.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
     $(".dataTables_filter input").unbind();
     $(".dataTables_filter input").bind('keyup', function (e) {
         if (e.keyCode == 13) {
             $('.table-data').DataTable().search(this.value).draw();
         }
     });
+
 });

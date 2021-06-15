@@ -34,7 +34,6 @@ namespace HD_proj.Models
 
         [Display(Name = "Số điện thoại")]
         [DataType(DataType.PhoneNumber)]
-        [Required]
         public string Sodienthoai {get;set;}
 
         [Display(Name = "Email")]
