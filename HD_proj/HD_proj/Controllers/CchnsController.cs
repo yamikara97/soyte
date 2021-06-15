@@ -131,7 +131,7 @@ namespace HD_proj.Controllers
 
             cchn.Quyetdinh = quyetdinh.Id;
             cchn.Cmnd = collect["sogiayto"];
-            cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
+           
 
             await _context.Quyetdinhs.AddAsync(quyetdinh);
             await _context.Giaytotuythans.AddAsync(giayto);
@@ -150,6 +150,7 @@ namespace HD_proj.Controllers
                     }
                     else
                     {
+                        cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
                         await _context.AddAsync(cchn);
                         await _context.SaveChangesAsync();
                         TempData["Notifications"] = " Successfully";
@@ -181,7 +182,7 @@ namespace HD_proj.Controllers
                 ViewData["File"] = _context.DanhmucFiles.Where(a => a.FatherId == id).ToList();
                 cchn = await _context.Cchns.FindAsync(id);
                 ViewData["Giaytotuythan"] = _context.Giaytotuythans.Where(a => a.IdCmnd == cchn.Cmnd).FirstOrDefault();
-                ViewData["Quyetdinh"] = _context.Quyetdinhs.Where(a => a.Id == cchn.Quyetdinh).FirstOrDefault();
+             
             }
 
             return PartialView("_ReplacePartial", cchn);
@@ -223,15 +224,6 @@ namespace HD_proj.Controllers
             }
 
             var quyetdinh = new Quyetdinh();
-            if (collect["quyetdinhID"].ToString() != Guid.Empty.ToString())
-            {
-                quyetdinh = _context.Quyetdinhs.Where(a => a.Id == Guid.Parse(collect["quyetdinhID"].ToString())).FirstOrDefault();
-                if (quyetdinh != null && quyetdinh.Id != Guid.Parse(collect["quyetdinhID"].ToString()))
-                {
-                    _context.Remove(quyetdinh);
-                    _context.SaveChanges();
-                }
-            }
             quyetdinh.Id = Guid.NewGuid();
             quyetdinh.Sohieu = collect["sohieuquyetdinh"];
             quyetdinh.Nguoiky = cchn.Nguoikyduyet;

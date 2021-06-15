@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hieuh\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj": {}
+    "C:\\Users\\Cheem\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hieuh\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj": {
+    "C:\\Users\\Cheem\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hieuh\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj",
+        "projectUniqueName": "C:\\Users\\Cheem\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj",
         "projectName": "HD_proj",
-        "projectPath": "C:\\Users\\hieuh\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj",
-        "packagesPath": "C:\\Users\\hieuh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hieuh\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\obj\\",
+        "projectPath": "C:\\Users\\Cheem\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\HD_proj.csproj",
+        "packagesPath": "C:\\Users\\Cheem\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Cheem\\Documents\\GitHub\\soyte\\HD_proj\\HD_proj\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\hieuh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Cheem\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -31,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -94,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
