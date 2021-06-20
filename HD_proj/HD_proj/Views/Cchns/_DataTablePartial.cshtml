@@ -48,9 +48,12 @@
                         <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Create") + "/" + item.Cchn.Id)">
                             <span><i class="fas fa-pen"></i></span>
                         </button>
-                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Replace") + "/" + item.Cchn.Id)">
-                            <span><i class="fas fa-sync"></i></span>
-                        </button>
+                        @if (item.Cchn.Trangthai !== Cchn.Trangthaivb.ACTIVE)
+                        {
+                            <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Replace") + "/" + item.Cchn.Id)">
+                                <span><i class="fas fa-sync"></i></span>
+                            </button>
+                        }
                         <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Mail") + "/" + item.Cchn.Id)">
                             <span><i class="fas fa-ban"></i></span>
                         </button>

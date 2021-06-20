@@ -139,25 +139,29 @@
                                 <h6 class="font-weight-bold text-info">Quyết định ban hành</h6>
                             </div>
                         </div>
+                        @{
+                            var quyetDinh = ViewData["Quyetdinh"] as Quyetdinh;
+                        }
+                        <input type="hidden" name="quyetdinhID" value="@(quyetDinh == null ? Guid.Empty.ToString(): quyetDinh.Id.ToString())" />
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     15) <label class="control-label">Số hiệu</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required type="text" class="form-control" name="sohieuquyetdinh" value="" />
+                                    <input required type="text" class="form-control" name="sohieuquyetdinh" value="@(quyetDinh == null ? "": quyetDinh.Sohieu)" />
                                     <span class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     16) <label class="control-label">Ngày ký</label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required type="date" class="form-control" name="ngayquyetdinh" value="" />
+                                    <input required type="date" class="form-control" name="ngayquyetdinh" value="@(quyetDinh == null ? DateTime.MinValue.ToString("yyyy-MM-dd") : quyetDinh.Ngayky.ToString("yyyy-MM-dd"))" />
                                     <span class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     17) <label asp-for="Nguoikyduyet" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required asp-for="Nguoikyduyet" class="form-control" value="Nguyễn Tiến Sơn" />
+                                    <input required asp-for="Nguoikyduyet" class="form-control" value="@(Model.Nguoikyduyet == null ? "Nguyễn Tiến Sơn" : Model.Nguoikyduyet) " />
                                     <span asp-validation-for="Nguoikyduyet" class="text-danger"></span>
                                 </div>
                             </div>

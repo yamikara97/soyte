@@ -131,7 +131,7 @@ namespace HD_proj.Controllers
 
             cchn.Quyetdinh = quyetdinh.Id;
             cchn.Cmnd = collect["sogiayto"];
-           
+            cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
 
             await _context.Quyetdinhs.AddAsync(quyetdinh);
             await _context.Giaytotuythans.AddAsync(giayto);
@@ -150,7 +150,6 @@ namespace HD_proj.Controllers
                     }
                     else
                     {
-                        cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
                         await _context.AddAsync(cchn);
                         await _context.SaveChangesAsync();
                         TempData["Notifications"] = " Successfully";
@@ -182,10 +181,13 @@ namespace HD_proj.Controllers
                 ViewData["File"] = _context.DanhmucFiles.Where(a => a.FatherId == id).ToList();
                 cchn = await _context.Cchns.FindAsync(id);
                 ViewData["Giaytotuythan"] = _context.Giaytotuythans.Where(a => a.IdCmnd == cchn.Cmnd).FirstOrDefault();
-             
+                ViewData["Quyetdinh"] = _context.Quyetdinhs.Where(a => a.Id == cchn.Quyetdinh).FirstOrDefault();
             }
-
-            return PartialView("_ReplacePartial", cchn);
+            if(cchn != null && cchn.Trangthai == Cchn.Trangthaivb.ACTIVE)
+            {
+                return PartialView("_ReplacePartial", cchn);
+            }
+            return NotFound();
         }
 
         [HttpPost]
@@ -194,9 +196,13 @@ namespace HD_proj.Controllers
         public async Task<IActionResult> Replace(Guid? id, [Bind("So,Ngaycap,Loai,Trinhdo,Phamvi,Hinhthuccap,Ngayhieuluc,Nguoikyduyet,Id,Ghichu")] Cchn cchn, IFormCollection collect)
         {
             cchn.UpdateBy = User.Identity.Name;
-
+            var cccu = _context.Cchns.Find(Guid.Parse(collect["Socu"].ToString()));
+            if(cccu != null)
+            {
+                cccu.Trangthai = Cchn.Trangthaivb.REPLACE;
+            }
             var giayto = _context.Giaytotuythans.Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
-            if (giayto != null && giayto.IdCmnd != collect["sogiayto"])
+            if (giayto != null)
             {
                 giayto.Hoten = collect["Hoten"];
                 giayto.Noicap = collect["noicap"];
@@ -208,7 +214,7 @@ namespace HD_proj.Controllers
                 _context.Giaytotuythans.Update(giayto);
                 _context.SaveChanges();
             }
-            else
+            else 
             {
                 giayto = new Giaytotuythan();
                 giayto.IdCmnd = collect["sogiayto"];
@@ -219,7 +225,7 @@ namespace HD_proj.Controllers
                 giayto.Sodienthoai = collect["sodienthoai"];
                 giayto.Email = collect["email"];
                 giayto.Diachi = collect["diachi"];
-                _context.Giaytotuythans.Update(giayto);
+                _context.Giaytotuythans.Add(giayto);
                 _context.SaveChanges();
             }
 
@@ -234,8 +240,7 @@ namespace HD_proj.Controllers
             cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
             cchn.Id = Guid.NewGuid();
 
-            await _context.Quyetdinhs.AddAsync(quyetdinh);
-            await _context.Giaytotuythans.AddAsync(giayto);
+            _context.Quyetdinhs.Add(quyetdinh);
 
 
 
