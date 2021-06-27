@@ -97,10 +97,10 @@ namespace HD_proj.Controllers
         {
             cchn.UpdateBy = User.Identity.Name;
 
-            var giayto = _context.Giaytotuythans.AsNoTracking().Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
-            if (giayto != null && giayto.IdCmnd != collect["sogiayto"])
+            var giayto = _context.Giaytotuythans.AsNoTracking().Where(a => a.IdCmnd == collect["old_giayto"].ToString()).FirstOrDefault();
+            if (giayto != null)
             {
-                _context.Remove(giayto);
+                _context.Giaytotuythans.Remove(giayto);
                 _context.SaveChanges();
             }
             giayto = new Giaytotuythan();
@@ -120,7 +120,7 @@ namespace HD_proj.Controllers
                 quyetdinh = _context.Quyetdinhs.Where(a => a.Id == Guid.Parse(collect["quyetdinhID"].ToString())).FirstOrDefault();
                 if (quyetdinh != null && quyetdinh.Id != Guid.Parse(collect["quyetdinhID"].ToString()))
                 {
-                    _context.Remove(quyetdinh);
+                    _context.Quyetdinhs.Remove(quyetdinh);
                     _context.SaveChanges();
                 }
             }
@@ -134,7 +134,7 @@ namespace HD_proj.Controllers
             cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
 
             await _context.Quyetdinhs.AddAsync(quyetdinh);
-            _context.Giaytotuythans.Update(giayto);
+            _context.Giaytotuythans.Add(giayto);
 
 
 
@@ -195,13 +195,12 @@ namespace HD_proj.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Replace(Guid? id, [Bind("So,Ngaycap,Loai,Trinhdo,Phamvi,Hinhthuccap,Ngayhieuluc,Nguoikyduyet,Id,Ghichu")] Cchn cchn, IFormCollection collect)
         {
-            if(_context.Cchns.Where(a => a.So == cchn.So).FirstOrDefault() != null)
-            {
                 cchn.UpdateBy = User.Identity.Name;
                 var cccu = _context.Cchns.Find(Guid.Parse(collect["Socu"].ToString()));
                 if (cccu != null)
                 {
                     cccu.Trangthai = Cchn.Trangthaivb.REPLACE;
+                cccu.Ghichu = cccu.Ghichu + Environment.NewLine + "Đã được thay thế bởi Chứng chỉ dược số: " + cchn.So;
                 }
                 var giayto = _context.Giaytotuythans.AsNoTracking().Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
                 if (giayto != null)
@@ -265,36 +264,27 @@ namespace HD_proj.Controllers
                     }
                 }
                 return PartialView("_OrderPartial", cchn);
-            }
-            return NotFound();
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null)
+            var cchn = new Cchn();
+            if (id.HasValue)
             {
-                return NotFound();
+                cchn = await _context.Cchns.FindAsync(id);
             }
-
-            var cchn = await _context.Cchns
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cchn == null)
-            {
-                return NotFound();
-            }
-
-            return View(cchn);
+            return PartialView("_DeletePartial", cchn);
         }
-
-        // POST: Cchns/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var cchn = await _context.Cchns.FindAsync(id);
-            _context.Cchns.Remove(cchn);
+            cchn.Trangthai = Cchn.Trangthaivb.CANCEL;
+            _context.Update(cchn);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return PartialView("_DeletePartial", cchn);
         }
 
         private bool CchnExists(Guid id)

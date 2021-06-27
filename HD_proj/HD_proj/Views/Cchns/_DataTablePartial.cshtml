@@ -41,7 +41,7 @@
                         }
                         @if (item.Cchn.Trangthai == Cchn.Trangthaivb.CANCEL)
                         {
-                            <span class="btn  bg-warning text-center text-white">Đã hủy</span>
+                            <span class="btn  bg-danger text-center text-white">Đã hủy</span>
                         }
                     </td>
                     <td class="text-center">
@@ -54,7 +54,7 @@
                                 <span><i class="fas fa-sync"></i></span>
                             </button>
                         }
-                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Mail") + "/" + item.Cchn.Id)">
+                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Delete") + "/" + item.Cchn.Id)">
                             <span><i class="fas fa-ban"></i></span>
                         </button>
                         <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Mail") + "/" + item.Cchn.Id)">
