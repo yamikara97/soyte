@@ -97,7 +97,7 @@ namespace HD_proj.Controllers
         {
             cchn.UpdateBy = User.Identity.Name;
 
-            var giayto = _context.Giaytotuythans.Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
+            var giayto = _context.Giaytotuythans.AsNoTracking().Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
             if (giayto != null && giayto.IdCmnd != collect["sogiayto"])
             {
                 _context.Remove(giayto);
@@ -134,7 +134,7 @@ namespace HD_proj.Controllers
             cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
 
             await _context.Quyetdinhs.AddAsync(quyetdinh);
-            await _context.Giaytotuythans.AddAsync(giayto);
+            _context.Giaytotuythans.Update(giayto);
 
 
 
@@ -195,76 +195,78 @@ namespace HD_proj.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Replace(Guid? id, [Bind("So,Ngaycap,Loai,Trinhdo,Phamvi,Hinhthuccap,Ngayhieuluc,Nguoikyduyet,Id,Ghichu")] Cchn cchn, IFormCollection collect)
         {
-            cchn.UpdateBy = User.Identity.Name;
-            var cccu = _context.Cchns.Find(Guid.Parse(collect["Socu"].ToString()));
-            if(cccu != null)
+            if(_context.Cchns.Where(a => a.So == cchn.So).FirstOrDefault() != null)
             {
-                cccu.Trangthai = Cchn.Trangthaivb.REPLACE;
-            }
-            var giayto = _context.Giaytotuythans.Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
-            if (giayto != null)
-            {
-                giayto.Hoten = collect["Hoten"];
-                giayto.Noicap = collect["noicap"];
-                giayto.Ngaysinh = DateTime.Parse(collect["ngaysinh"]);
-                giayto.Ngaycap = DateTime.Parse(collect["ngaycapgiayto"]);
-                giayto.Sodienthoai = collect["sodienthoai"];
-                giayto.Email = collect["email"];
-                giayto.Diachi = collect["diachi"];
-                _context.Giaytotuythans.Update(giayto);
-                _context.SaveChanges();
-            }
-            else 
-            {
-                giayto = new Giaytotuythan();
-                giayto.IdCmnd = collect["sogiayto"];
-                giayto.Hoten = collect["Hoten"];
-                giayto.Noicap = collect["noicap"];
-                giayto.Ngaysinh = DateTime.Parse(collect["ngaysinh"]);
-                giayto.Ngaycap = DateTime.Parse(collect["ngaycapgiayto"]);
-                giayto.Sodienthoai = collect["sodienthoai"];
-                giayto.Email = collect["email"];
-                giayto.Diachi = collect["diachi"];
-                _context.Giaytotuythans.Add(giayto);
-                _context.SaveChanges();
-            }
-
-            var quyetdinh = new Quyetdinh();
-            quyetdinh.Id = Guid.NewGuid();
-            quyetdinh.Sohieu = collect["sohieuquyetdinh"];
-            quyetdinh.Nguoiky = cchn.Nguoikyduyet;
-            quyetdinh.Ngayky = DateTime.Parse(collect["ngayquyetdinh"]);
-
-            cchn.Quyetdinh = quyetdinh.Id;
-            cchn.Cmnd = collect["sogiayto"];
-            cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
-            cchn.Id = Guid.NewGuid();
-
-            _context.Quyetdinhs.Add(quyetdinh);
-
-
-
-            if (ModelState.IsValid)
-            {
-                try
+                cchn.UpdateBy = User.Identity.Name;
+                var cccu = _context.Cchns.Find(Guid.Parse(collect["Socu"].ToString()));
+                if (cccu != null)
                 {
+                    cccu.Trangthai = Cchn.Trangthaivb.REPLACE;
+                }
+                var giayto = _context.Giaytotuythans.AsNoTracking().Where(a => a.IdCmnd == collect["sogiayto"].ToString()).FirstOrDefault();
+                if (giayto != null)
+                {
+                    giayto.Hoten = collect["Hoten"];
+                    giayto.Noicap = collect["noicap"];
+                    giayto.Ngaysinh = DateTime.Parse(collect["ngaysinh"]);
+                    giayto.Ngaycap = DateTime.Parse(collect["ngaycapgiayto"]);
+                    giayto.Sodienthoai = collect["sodienthoai"];
+                    giayto.Email = collect["email"];
+                    giayto.Diachi = collect["diachi"];
+                    _context.Giaytotuythans.Update(giayto);
+                }
+                else
+                {
+                    var giayto_new = new Giaytotuythan();
+                    giayto_new.IdCmnd = collect["sogiayto"];
+                    giayto_new.Hoten = collect["Hoten"];
+                    giayto_new.Noicap = collect["noicap"];
+                    giayto_new.Ngaysinh = DateTime.Parse(collect["ngaysinh"]);
+                    giayto_new.Ngaycap = DateTime.Parse(collect["ngaycapgiayto"]);
+                    giayto_new.Sodienthoai = collect["sodienthoai"];
+                    giayto_new.Email = collect["email"];
+                    giayto_new.Diachi = collect["diachi"];
+                    _context.Giaytotuythans.Add(giayto_new);
+                }
+
+                var quyetdinh = new Quyetdinh();
+                quyetdinh.Id = Guid.NewGuid();
+                quyetdinh.Sohieu = collect["sohieuquyetdinh"];
+                quyetdinh.Nguoiky = cchn.Nguoikyduyet;
+                quyetdinh.Ngayky = DateTime.Parse(collect["ngayquyetdinh"]);
+
+                cchn.Quyetdinh = quyetdinh.Id;
+                cchn.Cmnd = collect["sogiayto"];
+                cchn.Trangthai = Cchn.Trangthaivb.ACTIVE;
+                cchn.Id = Guid.NewGuid();
+
+                _context.Quyetdinhs.Add(quyetdinh);
+
+
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
                         await _context.AddAsync(cchn);
                         await _context.SaveChangesAsync();
                         TempData["Notifications"] = " Successfully";
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (id.HasValue && !CchnExists(cchn.Id))
-                    {
-                        return NotFound();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (id.HasValue && !CchnExists(cchn.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
                 }
+                return PartialView("_OrderPartial", cchn);
             }
-            return PartialView("_OrderPartial", cchn);
+            return NotFound();
         }
 
         public async Task<IActionResult> Delete(Guid? id)
