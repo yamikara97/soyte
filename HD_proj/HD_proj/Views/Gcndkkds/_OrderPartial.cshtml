@@ -1,4 +1,4 @@
-﻿@model Cchn
+﻿@model Gcndkkd
 <div class="modal fade p-0" id="order-modal ">
     <div class="modal-xl modal-dialog ">
         <div class="modal-content">
@@ -24,9 +24,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    2) <label asp-for="Hinhthuccap" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                    <input required asp-for="Hinhthuccap" class="form-control" />
-                                    <span asp-validation-for="Hinhthuccap" class="text-danger"></span>
+                                    2) <label asp-for="Loai" class="control-label"></label><span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                    <input required asp-for="Loai" class="form-control" />
+                                    <span asp-validation-for="Loai" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -79,9 +79,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                8) <label asp-for="Trinhdo" class="control-label"></label> <span class="text-danger font-weight-bolder pl-1">(*)</span>
-                                <input required asp-for="Trinhdo" class="form-control" />
-                                <span asp-validation-for="Trinhdo" class="text-danger"></span>
+                                8) <label asp-for="Tencoso" class="control-label"></label> <span class="text-danger font-weight-bolder pl-1">(*)</span>
+                                <input required asp-for="Tencoso" class="form-control" />
+                                <span asp-validation-for="Tencoso" class="text-danger"></span>
                             </div>
                         </div>
                        
@@ -195,7 +195,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
-                    @if (Model != null && Model.Trangthai != Cchn.Trangthaivb.CANCEL && Model.Trangthai != Cchn.Trangthaivb.REPLACE)
+                    @if (Model != null && Model.Trangthai != Gcndkkd.Trangthaivb.CANCEL && Model.Trangthai != Gcndkkd.Trangthaivb.REPLACE)
                     {
                         <button type="button" class="btn btn-primary" data-save="modal">Lưu</button>
                     }

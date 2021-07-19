@@ -12,7 +12,9 @@ namespace HD_proj.Models
         public enum Trangthaivb
         {
             ACTIVE = 0,
-            DEACTIVE = 1
+            DEACTIVE = 1,
+            REPLACE = 2,
+            CANCEL = 3
         }
 
         [Display (Name = "Số")]

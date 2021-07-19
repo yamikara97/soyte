@@ -1,0 +1,62 @@
+﻿@model Gcndkkd
+<div class="modal fade p-0" id="order-modal ">
+    <div class="modal-xl modal-dialog w-100">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="text-danger font-weight-bold text-uppercase">Thông tin chứng chỉ hành nghề Dược</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="container-fluid text-dark border-dark" id="print-PDF" style="font-family: Arial !important;">
+                <div class="row pt-3">
+                    <div class="col-6">
+                        <label class="text-center font-weight-bold w-100 ">UBND THÀNH PHỐ HẢI PHÒNG</label>
+                        <label class="text-center font-weight-bold w-100" style="text-decoration: underline">SỞ Y TẾ</label>
+                        <label class="text-center font-weight-bold w-100">
+                            Số: <span class="text-danger">@Model.So</span>
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <label class="text-center font-weight-bold w-100">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</label>
+                        <label class="text-center font-weight-bold w-100" style="text-decoration: underline">Độc lập - Tự do - Hạnh Phúc</label>
+                    </div>
+
+                </div>
+                @{
+                    var giayToTuyThan = ViewData["Giaytotuythan"] as Giaytotuythan;
+                }
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <h4 class="text-center text-danger font-weight-bold w-100">THÔNG TIN CHỨNG NHẬN <br />ĐĂNG KÝ KINH DOANH</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label class="text-left font-weight-bold">I. Thông tin chi tiết</label>
+                        <br />
+                        <label>Họ và tên: @(giayToTuyThan == null ? "" : giayToTuyThan.Hoten)</label>
+                        <br />
+                        <label>Ngày sinh: @(giayToTuyThan == null ? DateTime.MinValue.ToString("yyyy-MM-dd")  : giayToTuyThan.Ngaysinh.ToString("yyyy-MM-dd") )</label>
+                        <br />
+                        <label>CMND/CCCD: @(giayToTuyThan == null ? "" : giayToTuyThan.IdCmnd)</label>
+                        <br />
+                        <label>Ngày cấp: @(giayToTuyThan == null ? DateTime.MinValue.ToString("yyyy-MM-dd")  : giayToTuyThan.Ngaycap.ToString("yyyy-MM-dd") )</label>
+                        <label class="pl-5">Nơi cấp: @(giayToTuyThan == null ? "" : giayToTuyThan.Noicap)</label>
+                   
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" data-save="modal">In</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('input').on('change', function () {
+                $(this).css("border", "1px solid #d1d3e2");
+        });
+    });
+
+</script>
