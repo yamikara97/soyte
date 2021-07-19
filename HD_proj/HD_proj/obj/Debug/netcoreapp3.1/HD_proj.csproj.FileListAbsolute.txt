@@ -654,3 +654,13 @@ C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcndkkds\_OrderPartial.cshtml.g.cs
 C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcndkkds\_PdfPartialcshtml.cshtml.g.cs
 C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcndkkds\_ReplacePartial.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\Create.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\Delete.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\Details.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\Edit.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\Index.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\_DataTablePartial.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\_DeletePartial.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\_OrderPartial.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\_PdfPartialcshtml.cshtml.g.cs
+C:\Users\Cheem\Documents\GitHub\soyte\HD_proj\HD_proj\obj\Debug\netcoreapp3.1\Razor\Views\Gcngpps\_ReplacePartial.cshtml.g.cs

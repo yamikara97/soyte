@@ -11,5 +11,7 @@ namespace HD_proj.Models
         public Cchn Cchn { get; set; }
         public Gcndkkd Gcndkkd { get; set; }
         public Quyetdinh Quyetdinh { get; set; }
+
+        public Gcngpp Gcngpp { get; set; }
     }
 }

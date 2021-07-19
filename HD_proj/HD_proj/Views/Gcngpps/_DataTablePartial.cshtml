@@ -1,0 +1,73 @@
+﻿
+@model IEnumerable<HD_proj.Models.ModelViewmodel>
+
+<table id="gcnkd" class="table nowrap table-bordered table-striped mt-5 table-data">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Id</th>
+            <th>Ngày cấp</th>
+            <th>Ngày hiệu lực</th>
+            <th>Quyết định</th>
+            <th>Người đại diện</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item != null)
+            {
+                <tr>
+                    <td></td>
+                    <td>@item.Gcndkkd.So</td>
+                    <td>@item.Gcndkkd.Ngaycap.ToString("dd-MM-yyyy")</td>
+                    <td>@item.Gcndkkd.Ngayhieuluc.ToString("dd-MM-yyyy")</td>
+                    <td>@(item.Quyetdinh == null ? "" : item.Quyetdinh.Sohieu)</td>
+                    <td>@(item.Giaytotuythan == null? "" :  item.Giaytotuythan.Hoten)</td>
+                    <td class="text-center">
+                        @if (item.Gcndkkd.Trangthai == Gcndkkd.Trangthaivb.ACTIVE)
+                        {
+                            <span class="btn  bg-primary text-center text-white">Mới</span>
+                        }
+                        @if (item.Gcndkkd.Trangthai == Gcndkkd.Trangthaivb.DEACTIVE)
+                        {
+                            <span class="btn  bg-danger text-center text-white">Đã hết hạn</span>
+                        }
+                        @if (item.Gcndkkd.Trangthai == Gcndkkd.Trangthaivb.REPLACE)
+                        {
+                            <span class="btn  bg-warning text-center text-white">Đã thay thế</span>
+                        }
+                        @if (item.Gcndkkd.Trangthai == Gcndkkd.Trangthaivb.CANCEL)
+                        {
+                            <span class="btn  bg-danger text-center text-white">Đã hủy</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Create") + "/" + item.Gcndkkd.Id)">
+                            <span><i class="fas fa-pen"></i></span>
+                        </button>
+                        @if (item.Gcndkkd.Trangthai == Gcndkkd.Trangthaivb.ACTIVE)
+                        {
+                            <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Replace") + "/" + item.Gcndkkd.Id)">
+                                <span><i class="fas fa-sync"></i></span>
+                            </button>
+                        }
+                        @if (item.Gcndkkd.Trangthai != Gcndkkd.Trangthaivb.CANCEL && item.Gcndkkd.Trangthai != Gcndkkd.Trangthaivb.REPLACE)
+                        {
+                            <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Delete") + "/" + item.Gcndkkd.Id)">
+                                <span><i class="fas fa-ban"></i></span>
+                            </button>
+                        }
+                            <button class="btn btn-primary action-btn border-0" data-toggle="ajax-modal" data-target="#order-model" data-url="@(Url.Action("Print") + "/" + item.Gcndkkd.Id)">
+                                <span><i class="fas fa-print"></i></span>
+                            </button>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+

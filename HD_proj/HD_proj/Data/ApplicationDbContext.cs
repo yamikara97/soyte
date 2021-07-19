@@ -22,5 +22,7 @@ namespace HD_proj.Data
         public DbSet<Quyetdinh> Quyetdinhs { get; set; }
         public DbSet<Giaytotuythan> Giaytotuythans { get; set; }
         public DbSet<Gcndkkd> Gcndkkds { get; set; }
+
+        public DbSet<Gcngpp> Gcngpps { get; set; }
     }
 }
